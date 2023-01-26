@@ -20,12 +20,16 @@ class GitExtras < Formula
   def install
     system "make", "PREFIX=#{prefix}", "INSTALL_VIA=brew", "install"
     pkgshare.install "etc/git-extras-completion.zsh"
+    pkgshare.install "etc/git-extras.fish"
   end
 
   def caveats
     <<~EOS
       To load Zsh completions, add the following to your .zshrc:
         source #{opt_pkgshare}/git-extras-completion.zsh
+
+      To load fish completions, copy the following to your completions:
+        cp #{opt_pkgshare}/git-extras.fish ~/.config/fish/completions/
     EOS
   end
 
